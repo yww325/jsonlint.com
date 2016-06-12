@@ -53,6 +53,12 @@ function(CodeMirror, jsonlint, beautify, minify) {
 			this.go();
 		}.bind(this));
 
+		// when user clicks "Clear" button, assign empty string to the "code" property
+		this.form.addEventListener('reset', function(evt) {
+			evt.preventDefault();
+			this.code = '';
+		}.bind(this));
+
 		// when Ctrl-Enter is pressed, run "go" method
 		doc.addEventListener('keyup', function(evt) {
 			if (evt.ctrlKey && evt.keyCode == 13) {
@@ -83,7 +89,8 @@ function(CodeMirror, jsonlint, beautify, minify) {
 			lineNumbers: true,
 			styleActiveLine: true,
 			matchBrackets: true,
-			indentWithTabs: true
+			indentWithTabs: true,
+			autofocus: true
 		});
 
 		return this;
@@ -177,6 +184,7 @@ function(CodeMirror, jsonlint, beautify, minify) {
 	fn.highlightErrorLine = function(line) {
 		if(typeof line == 'number') {
 			this.errorLine = this.editor.addLineClass(line, 'background', 'line-error');
+			this.editor.setCursor(line);
 		} else if(this.errorLine) {
 			this.editor.removeLineClass(this.errorLine, 'background', 'line-error');
 			this.errorLine = null;
