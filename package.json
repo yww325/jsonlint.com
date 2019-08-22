@@ -5,14 +5,15 @@
   "private": true,
   "scripts": {
     "test": "npm run lint",
-    "build": "npm run clean && NODE_ENV=production webpack --mode=production",
+    "build": "npm run clean && set NODE_ENV=production && webpack --mode=production",
     "dev": "NODE_ENV=development webpack-dev-server --port 8106",
     "clean": "rimraf dist",
     "upgrade": "ncu -u && npm i",
     "reinstall": "rm -rf node_modules package-lock.json && npm i",
     "lint": "eslint . --ext .js --ignore-pattern '**/node_modules/**' --ignore-pattern '**/dist/**' --fix",
     "deploy": "pm2 deploy ecosystem.json production --force",
-    "stylelint": "stylelint static/css/style.css"
+    "stylelint": "stylelint static/css/style.css",
+    "serve": "http-server -p 9090 dist/"
   },
   "repository": {
     "type": "git",
@@ -67,6 +68,7 @@
     "balajs": "^1.0.7",
     "clipboard": "^2.0.4",
     "codemirror": "^5.48.2",
+    "http-server": "^0.11.1",
     "js-beautify": "^1.10.1",
     "jsonlint-mod": "^1.7.5",
     "jsonminify": "^0.4.1"
