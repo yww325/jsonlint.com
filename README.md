@@ -2,7 +2,8 @@
 
 Source code for [jsonlint.com](http://jsonlint.com)
 
-I made some change for building and running it in Windows
+I made some change for building and running it in Windows(serving using http-server)
+
 ### Steps
 1. npm install
 2. npm run build
